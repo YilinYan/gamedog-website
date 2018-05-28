@@ -1,0 +1,25 @@
+<div class="card user-card">
+  <img class="card-img-top" src={{ user.get_avatar(64) }} width=64 height=64>
+  <div class="card-body">
+    <a href="{{ url_for('user',username=user.username) }}">
+      <h5 class="card-title">
+        {{ user.username }}
+      </h5>
+    </a>
+    <div class="text-muted">{{ user.introduction }}</div>
+    {% if user != current_user %}
+      {% if current_user.is_following(user) %}
+      <div class="text-center mt-3">
+        <a class="badge badge-pill badge-light btn hover-toggle" href="{{ url_for('unfollow',username=user.username) }}">
+          <span class="hover-toggle-1">following</span>
+          <span class="hover-toggle-2"><i class="fa fa-minus"></i> unfollow</span>
+        </a>
+      </div>
+      {% else %}
+      <div class="text-center mt-3">
+        <a class="badge badge-pill badge-success btn btn-success" href="{{ url_for('follow',username=user.username) }}"><i class="fa fa-plus"></i> follow</a>
+      </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>

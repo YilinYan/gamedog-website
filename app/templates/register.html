@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+	<h1>Register</h1>
+	<form action="" method="post">
+		{{ form.hidden_tag() }}
+		<div class="mb-3">
+			{{ form.email.label }}
+			{% if form.email.errors|length > 0 %}
+				{{ form.email(size=64, class='form-control is-invalid') }}
+			{% else %}
+				{{ form.email(size=64, class='form-control') }}
+			{% endif %}
+			{% for error in form.email.errors %}
+				<div class="invalid-feedback">{{ error }}</div>
+			{% endfor %}
+		</div>
+		<div class="mb-3">
+			{{ form.username.label }}
+			{% if form.username.errors|length > 0 %}
+				{{ form.username(size=32, class='form-control is-invalid') }}
+			{% else %}
+				{{ form.username(size=32, class='form-control') }}
+			{% endif %}
+			{% for error in form.username.errors %}
+				<div class="invalid-feedback">{{ error }}</div>
+			{% endfor %}
+		</div>
+		<div class="mb-3">
+			{{ form.password.label }}<br>
+			{% if form.password.errors|length > 0 %}
+				{{ form.password(size=32, class='form-control is-invalid') }}
+			{% else %}
+				{{ form.password(size=32, class='form-control') }}
+			{% endif %}
+			{% for error in form.password.errors %}
+				<div class="invalid-feedback">{{ error }}</div>
+			{% endfor %}
+		</div>
+		<div class="mb-3">
+				{{ form.passwordrep.label }}<br>
+				{% if form.password.errors|length > 0 %}
+					{{ form.passwordrep(size=32, class='form-control is-invalid') }}
+				{% else %}
+					{{ form.passwordrep(size=32, class='form-control') }}
+				{% endif %}
+			{% for error in form.passwordrep.errors %}
+				<div class="invalid-feedback">{{ error }}</div>
+			{% endfor %}
+		</div>
+		<div>{{ form.submit(class='btn btn-primary') }}</div>
+	</form>
+</div>
+{% endblock %}

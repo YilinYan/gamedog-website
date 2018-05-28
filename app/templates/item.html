@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div>
+		<h1>
+			{{ item.title }}
+			<div class="score-tag">
+				{{ form.score(class="rating-readonly", v=item.score()) }}
+				{{item.score()}}
+			</div> 
+		</h1>
+		<div class="row mt-4">
+			<div class="col-auto pr-0">
+				<img src="{{ item.image }}" height=200>
+			</div>
+			<div class="col">
+				<p>Introduction: {{ item.body }}</p>
+				{% if current_user.admin %}
+				<p>
+				<a href="{{ url_for('edit_item',id=item.id) }}">edit</a>
+				</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<br/>
+	<form class="mt-4" action="" method="post">
+		{{ form.hidden_tag() }}
+		<h4>Leave a comment</h4>
+		<br/>
+		<div class="score-tag mb-2">
+		{{ form.score(class="rating") }}
+		</div>
+		{% for error in form.score.errors %}
+		<div class="invalid-feedback">{{ error }}</div>
+		{% endfor %}
+		{{ form.comment(cols=64, rows=4, class="form-control") }}
+		{% for error in form.comment.errors %}
+		<div class="invalid-feedback">{{ error }}</div>
+		{% endfor %}
+		<div class="mt-3">{{ form.submit(class="btn btn-success btn-sm") }}</div>
+	</form>
+	<hr>
+	<h5><span class="badge badge-light"><i class="fa fa-comments"></i> Comments</span></h5>
+	{% for comment in item.comments %}
+		{% include '_comment.html' %}
+	{% endfor %}
+{% endblock %}

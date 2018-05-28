@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<main role="main" class="inner cover text-center pb-4 mb-4 user-banner">
+		<div class="mb-4">
+			<img class="avatar" src="{{ user.get_avatar(128) }}" width=128 height=128>
+		</div>
+		<h1 class="cover-heading">{{ user.username }}</h1>
+		{% if user.introduction %}
+			<p class="lead">{{ user.introduction }}</p>
+		{% endif %}
+
+		{% if user == current_user %}
+		<p class="lead"><a href="{{ url_for('edit_profile') }}" class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i> edit my profile</a></p>
+		{% elif current_user.is_following(user) %}
+		<p class="lead">
+			<a class="btn btn-light btn-sm" href="{{ url_for('inbox_to', username=user.username) }}"><i class="fa fa-envelope"></i> message</a>
+			<a href="{{ url_for('unfollow', username=user.username) }}" class="btn btn-danger btn-sm"><i class="fa fa-minus"></i> unfollow</a>
+		</p>
+		{% else %}
+		<p class="lead">
+				<a class="btn btn-light btn-sm" href="{{ url_for('inbox_to', username=user.username) }}"><i class="fa fa-envelope"></i> message</a>
+			<a href="{{ url_for('follow', username=user.username) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> follow</a>
+		</p>	
+		{% endif %}
+	</main>
+
+	<div class="row">
+		<div class="col">
+			<h5><span class="badge badge-light"><i class="fa fa-gamepad"></i> Game Comments</span></h5>
+			<div>
+				<div class="row">
+					{% for comment in comments %}
+						<div class="card game-card">
+							<img class="card-img-top" src={{ comment.item.image }}>
+							<div class="card-body">
+								<h5 class="mb-3"><a href="{{ url_for('item', item_id=comment.item.id) }}">{{ comment.item.title }}</a></h5>
+								{% include '_comment.html' %}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			{% if not comments|list|length %}
+			<p class="text-muted"><i class="fa fa-kiwi-bird"></i> Nothing here.</p>
+			{% endif %}
+			<br/>
+			<h5><span class="badge badge-light"><i class="fa fa-comment-alt"></i> Posts</span></h5>
+			{% for post in posts %}
+				{% include '_post.html' %}
+			{% endfor %}
+			{% if not posts|list|length %}
+			<p class="text-muted"><i class="fa fa-kiwi-bird"></i> Nothing here.</p>
+			{% endif %}
+		</div>
+		<div class="col-3">
+			<h5><span class="badge badge-light"><i class="fa fa-user-friends"></i> Following</span></h5>
+			<div class="row">
+				{% for user in followed %}
+					{% include "_user.html" %}
+				{% endfor %}
+				{% if not followed|list|length %}
+				<div class="col">
+					<p class="text-muted"><i class="fa fa-kiwi-bird"></i> {{user.username}} is following nobody.</p>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

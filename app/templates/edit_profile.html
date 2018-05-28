@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+	<form action="" method="post" enctype="multipart/form-data">
+		{{ form.hidden_tag() }}
+		<main role="main" class="inner cover text-center pt-4 pb-4">
+			<div class="mb-4">
+				<img class="avatar avatar-preview" src="{{ current_user.get_avatar(128) }}" width=128 height=128>
+				{{ form.avatar(class='avatar-input') }}
+				<label for="avatar" class="avatar-input-label"><span class="btn btn-light btn-sm">Change avatar</span></label>
+			</div>
+			<h1 class="cover-heading">
+				{{ form.username(size=32, class='form-control ghost text-center h1', placeholder='Username', autocomplete='off', style='font-size: 2.5rem; border-bottom: 1px solid #ccc') }}
+			</h1>
+			{% for error in form.username.errors %}
+			<div class="invalid-feedback">{{ error }}</div>
+			{% endfor %}
+			{{ form.introduction(class='form-control ghost text-center', placeholder='Introduction', style='font-size: 1.25rem; font-weight: 300') }}
+			{% for error in form.introduction.errors %}
+			<div class="invalid-feedback">{{ error }}</div>
+			{% endfor %}
+			<div>
+				<a class="btn btn-light btn-sm" href={{ url_for('user', username=current_user.username) }}>Cancel</a> {{ form.submit(class='btn btn-success btn-sm', value="Save") }}
+			</div>
+		</main>
+	</form>
+
+{% endblock %}

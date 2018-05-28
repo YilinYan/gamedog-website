@@ -1,0 +1,108 @@
+<html>
+	<head>
+		{% if title %}
+		<title>{{ title }} - gamedog</title>
+		{% else %}
+		<title>welcome to gamedog</title>
+		{% endif %}
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-stars.css" rel="stylesheet">
+		<link href="/css/fontawesome/css/fontawesome-all.css" rel="stylesheet">
+		<link href="/css/main.css" rel="stylesheet">
+
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/moment.min.js"></script>
+		<script src="/js/jquery.barrating.min.js"></script>
+
+		<link rel="shortcut icon" href="/img/favicon.png">
+		<!--script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script-->
+	</head>
+	<body>
+		<header class="navbar py-3">
+			<div class="container">
+				<div class="row flex-nowrap justify-content-between align-items-center w-100">
+					<div class="col-8">
+						<a class="text-dark logo" href="{{ url_for('index') }}">
+							<img src="/img/logo.png" width="135"/>
+						</a>
+						<a class="text-muted ml-4" href="{{ url_for('explore') }}">Explore</a>
+						{%if current_user.admin %}
+						<a class="text-muted ml-4" href="{{ url_for('add_item') }}">Add Game</a>
+						{% endif %}
+					</div>
+					<div class="col-4 d-flex justify-content-end align-items-center">
+						{% if g.search_form %}
+						<i class="fa fa-search text-muted mr-2"></i>
+						<form method='get' action="{{ url_for('search') }}" class="mr-4 mb-0">
+							{{ g.search_form.q(class="form-control ghost", placeholder="Search...", autocomplete="off") }}
+						</form>
+						{% endif %}
+						{%if current_user.is_anonymous %}
+						<a class="btn btn-sm btn-outline-secondary" href="{{ url_for('login') }}">Login</a>
+						{% else %}
+
+						<a id="profile" class="text-muted" href="{{ url_for('user', username=current_user.username) }}">
+							<img class='avatar small-avatar' src="{{ current_user.get_avatar(24) }}" width=24 height=24> <span class="notification badge-danger dot"></span>
+						</a>
+						<div id="profile-menu">
+							<div class="list-group">
+								<a class="list-group-item list-group-item-action" href="{{ url_for('user', username=current_user.username) }}"><i class="fa fa-fw fa-user-circle"></i> {{current_user.username}}</a>
+								<a class="list-group-item list-group-item-action" href="{{ url_for('inbox') }}"><i class="fa fa-fw fa-envelope"></i> Inbox <span class="notification notification-val badge badge-pill badge-danger">12</span></a>
+								<a class="list-group-item list-group-item-action" href="{{ url_for('logout') }}"><i class="fa fa-fw fa-door-open"></i> Logout</a>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!--button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button-->
+
+		<div class="container" style="margin-top: 5rem;">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-primary" role="alert">
+						{{ message }}
+					</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+			{% block content %}{% endblock %}
+		</div>
+
+		<footer class="text-muted mt-5 mb-5">
+			<div class="container">
+				<p class="float-right">
+					<a href="#"><i class="fa fa-arrow-up"></i> Back to top</a>
+				</p>
+				<p>Copyright 2018, Gamedog</p>
+			</div>
+		</footer>
+
+		<script src="/js/main.js"></script>
+
+
+		<!--script>
+		(function() {
+		    var timer = null;
+		    $(".user_popup").hover(
+		        function(event){
+		            var elem = $(event.currentTarget)
+		            p = elem.popover({
+							container: elem,
+		                    content: "hhhhhhhhhh"
+		                })
+					console.log(p)
+					p.popover('show');
+					console.log("....")
+		        },
+		        function(event){}
+		    )
+		})();
+	   </script-->
+	</body>
+</html>

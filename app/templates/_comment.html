@@ -1,0 +1,27 @@
+<div class="row mt-3">
+	<div class="col-auto mt-1 pr-0">
+		<a href="{{ url_for('user', username=comment.author.username) }}">
+			<img class="avatar" src="{{ comment.author.get_avatar(64) }}" width=64 height=64><br/>
+		</a>
+	</div>
+	<div class="col">
+		<div>
+			<a href="{{ url_for('user', username=comment.author.username) }}">
+				{{ comment.author.username }}
+			</a>
+			<span class="format-date">{{ comment.timestamp }}</span>
+		</div>
+		<div class="score-tag small mt-1 mb-2">
+			<select class="rating-readonly" v={{ comment.score }}>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+		</div> 
+		<p>
+			{{ comment.body }}
+		</p>
+	</div>
+</div>

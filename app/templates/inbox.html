@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>{{ title }}</h1>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="list-group">
+				{% for _user in users %}
+					{% if _user != current_user %}
+						{% set unread_cnt = all_messages|selectattr("sender_id", "eq", _user.id)|list|length %}
+						<a href={{ url_for('inbox_to', username=_user.username) }} class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+							<span><img class="avatar mr-2" src="{{ _user.get_avatar(24) }}" width=24 height=24>{{ _user.username }}</span>
+							{% if unread_cnt %}
+								<span class="badge badge-danger badge-pill">{{ 
+									unread_cnt
+								}}</span>
+							{% endif %}
+						</a>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

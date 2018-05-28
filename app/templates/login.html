@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+	<h1>Sign In</h1>
+	<form action="" method="post" class="form-signin">
+		{{ form.hidden_tag() }}
+		<p>
+			{{ form.username.label }}<br>
+			{{ form.username(size=32, class='form-control') }}
+			{% for error in form.username.errors %}
+			<div class="invalid-feedback">{{ error }}</div>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.password.label }}<br>
+			{{ form.password(size=32, class='form-control') }}
+			{% for error in form.password.errors %}
+			<div class="invalid-feedback">{{ error }}</div>
+			{% endfor %}
+		</p>
+		<div>{{ form.remember_me() }} {{ form.remember_me.label }}</div>
+		<div>{{ form.submit(class='btn btn-primary') }}</div>
+	</form>
+	<p>New Comer? <a href="{{ url_for('register') }}">Register!</a></p>
+</div>
+{% endblock %}
+

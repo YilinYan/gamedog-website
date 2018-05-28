@@ -1,0 +1,247 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+}
+
+.form-container {
+  max-width: 30rem;
+  margin: auto;
+}
+
+.game-card {
+  flex: 1;
+  max-width: 250px;
+  min-width: 200px;
+  margin: 0 15px 15px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.05);
+  transition: box-shadow .2s ease-in-out;
+}
+
+.game-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.user-card {
+  flex: 1;
+  max-width: 200px;
+  min-width: 150px;
+  margin: 0 15px 15px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.05);
+  transition: box-shadow .2s ease-in-out;
+}
+
+.game-card:hover, .user-card:hover {
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.05);
+}
+
+.user-card .card-img-top {
+  width: 50%;
+  height: auto;
+  display: block;
+  margin: 1em auto 0;
+  border-radius: 100%;
+}
+
+.user-card .card-title {
+  text-align: center;
+}
+
+.avatar {
+  border-radius: 100%;
+  vertical-align: bottom;
+  object-fit: cover;
+}
+
+.small-avatar {
+  height: 24px;
+  border-radius: 100%;
+  vertical-align: bottom;
+}
+
+.avatar-preview {
+  filter: brightness(0.5);
+}
+.avatar-input {
+  display: none;
+}
+.avatar-input-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 54px;
+}
+.avatar-input-label .btn {
+  font-size: .65rem;
+  padding: .1rem .3rem;
+  box-shadow: 0 0 0 1px #999;
+}
+
+.user-banner {
+  width: 100vw;
+  padding-top: 7.5rem;
+  margin-top: -6rem;
+  margin-left: calc(-50vw + 50%);
+  background: url(/img/bg.jpg) rgba(0, 0, 0, 0.18);
+  background-blend-mode: darken;
+  background-size: cover;
+  background-position: top center;
+  color: white;
+}
+
+.alert + .user-banner {
+  margin-top: calc(-34px - 8rem);
+}
+
+.format-date {
+  font-size: .8em;
+  color: gray;
+  visibility: hidden;
+}
+.format-date.show {
+  visibility: visible;
+}
+
+.score-tag {
+  visibility: hidden;
+  display: inline-block;
+  color: gray;
+  font-size: 1rem;
+}
+.score-tag > div {
+  display: inline-block;
+}
+.score-tag.show {
+  visibility: visible;
+}
+.score-tag.small {
+  font-size: 0.65em;
+}
+
+#profile-menu {
+  /* hide the menu by default */
+  visibility: hidden;
+  position: absolute;
+  top: 24px;
+  right: 0;
+  width: 170px;
+  padding: 10px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+}
+#profile-menu .list-group {
+  /* add some shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+#profile-menu .list-group-item {
+  /* make buttons smaller  */
+  padding: 0.25rem 1.25rem;
+}
+ 
+/* display it when hover the profile button or menu itself */
+#profile:hover + #profile-menu,
+#profile-menu:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hover-toggle .hover-toggle-1 {
+  display: initial;
+}
+.hover-toggle .hover-toggle-2 {
+  display: none;
+}
+.hover-toggle:hover .hover-toggle-1 {
+  display: none;
+}
+.hover-toggle:hover .hover-toggle-2 {
+  display: initial;
+}
+
+.ghost, .ghost:focus {
+  border: none;
+  resize: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  height: unset;
+  line-height: inherit;
+  max-width: 300px;
+  margin: auto;
+  border-radius: 0;
+}
+
+a.logo:hover {
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+i.fa {
+  margin-right: .2em;
+}
+
+.container > h1 {
+  /* title */
+  margin-bottom: .5em;
+}
+
+.bubble {
+  margin: .6em 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.bubble.bubble-sent {
+  flex-direction: row;
+}
+.bubble.bubble-received {
+  flex-direction: row-reverse;
+}
+.bubble.bubble-sent .bubble-wrapper {
+  text-align: right;
+  margin-right: .5em;
+}
+.bubble.bubble-received .bubble-wrapper {
+  margin-left: .5em;
+}
+.bubble-body {
+  max-width: 300px;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 1em;
+  background: #dadada;
+}
+.bubble.bubble-sent .bubble-body {
+  background: #29a745;
+  color: white;
+}
+.bubble .format-date {
+  display: block;
+  opacity: 0.8;
+  font-size: 0.6rem;
+}
+
+.notification {
+  display: none;
+  vertical-align: text-bottom;
+}
+.notification.dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  right: 10px;
+  top: -2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.notification.show {
+  display: inline-block;
+}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+		<h1>Hello, {{ current_user.username }}!</h1>
+		{% if form %}
+		<div>
+			<form action="" method="post">
+				{{ form.hidden_tag() }}
+				{% if form.post.errors|length > 0 %}
+				{{ form.post(cols=64, rows=4, class="form-control is-invalid") }}
+				{% else %}
+				{{ form.post(cols=64, rows=4, class="form-control", placeholder="What’s happening?") }}
+				{% endif %}
+				{% for error in form.post.errors %}
+				<div class="invalid-feedback">{{ error }}</div>
+				{% endfor %}
+				<div class="mt-3">{{ form.submit(class="btn btn-success btn-sm", value="Post") }}</div>
+			</form>
+		</div>
+		{% endif %}
+		<hr/>
+		<div class="mt2">
+		<h5><span class="badge badge-light"><i class="fa fa-crow"></i> Timeline</span></h5>
+		{% for post in posts %}
+			{% include "_post.html" %}
+		{% endfor %}
+		</div>
+{% endblock %}
