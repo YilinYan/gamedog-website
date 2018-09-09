@@ -1,42 +1,56 @@
-# gamedog-flask-sqlalchemy-dbpj
+<h1> gamedog-flask-sqlalchemy-dbpj </h1>
 
-<img src="/pics/db1.png" width = "150"/>
+<img src="/pics/db1.png" width = "150" />
 
-<hr>
+A website for game lovers. Search for popular games, leave a comment and follow your new friends!
 
-## homepage
+<div align = "center">
 <img src="/pics/db5.png" width = "600"/>
+</div>
 
-<hr>
+## Features
+Real-time inbox notification
+<img src="/pics/db3.png" width = "250" align = "right" vspace = "10" hspace = "10"/>
 
-## manual
-##### for macOS user
-- install search enginee
+</br></br></br></br></br></br>
+<img src="/pics/db7.png" width = "600" align = "right" vspace = "10"  hspace = "10"/>
+Full-text search powered by Elasticsearch
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+<div align = "center">
+Access to the whole chat history </br>
+<img src="/pics/db6.png" width = "1000" vspace = "10" hspace = "10"/>
+</div>
+
+</br></br></br></br></br>
+
+## Get Started
+#### For macOS
+Install search enginee
 ```
 $ brew install elasticsearch
 ```
-- start enginee
+Start the enginee
 ```
 $ usr/local/bin/elasticsearch &
 ```
-- use environment
+Set the environment
 ```
 $ python3 -m venv venv
 $ pip install ...
 $ ...
 $ source venv/bin/activate
 ```
-- export env variable
+Export env variable
 ```
 $ export FLASK_APP=project.py
 ```
-- start app
+Start app
 ```
 $ flask run
 ```
-- go to "localhost:5000"
+Go to "localhost:5000"
 
-<hr>
-
-## reference
-- https://learn.miguelgrinberg.com/
+## Acknowledgments
+Tutorial: **Miguel Grinberg** - [The Flask Mega-Tutorial](https://learn.miguelgrinberg.com/)
