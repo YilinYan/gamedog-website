@@ -6,7 +6,7 @@ A website for game lovers. Search for popular games, leave a comment and follow 
 
 <div align = "center">
 <img src="/pics/db5.png" width = "600" vspace = "10"/>
-</br></br></br>
+</br></br></br></br></br>
 </div>
 
 ## Features
@@ -24,7 +24,7 @@ Access to the whole chat history </br>
 <img src="/pics/db6.png" width = "1000" vspace = "10" hspace = "10"/>
 </div>
 
-</br></br></br></br>
+</br></br></br>
 
 ## Get Started
 #### For macOS
@@ -39,9 +39,13 @@ $ usr/local/bin/elasticsearch &
 Set the environment
 ```
 $ python3 -m venv venv
-$ pip install ...
-$ ...
 $ source venv/bin/activate
+$ pip install flask
+$ pip install flask-sqlalchemy
+$ pip install flask-migrate
+$ pip install flask-login
+$ pip install elasticsearch
+$ pip install flask-wtf
 ```
 Export env variable
 ```
@@ -52,6 +56,8 @@ Start app
 $ flask run
 ```
 Go to "localhost:5000"
+
+</br></br>
 
 ## Acknowledgments
 Tutorial: **Miguel Grinberg** - [The Flask Mega-Tutorial](https://learn.miguelgrinberg.com/)
