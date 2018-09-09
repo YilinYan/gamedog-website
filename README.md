@@ -5,7 +5,8 @@
 A website for game lovers. Search for popular games, leave a comment and follow your new friends!
 
 <div align = "center">
-<img src="/pics/db5.png" width = "600"/>
+<img src="/pics/db5.png" width = "600" vspace = "10"/>
+</br></br></br>
 </div>
 
 ## Features
@@ -18,12 +19,12 @@ Full-text search powered by Elasticsearch
 
 </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
 
-<div align = "center">
+<div>
 Access to the whole chat history </br>
 <img src="/pics/db6.png" width = "1000" vspace = "10" hspace = "10"/>
 </div>
 
-</br></br></br></br></br>
+</br></br></br></br>
 
 ## Get Started
 #### For macOS
