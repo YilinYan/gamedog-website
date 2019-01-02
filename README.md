@@ -1,4 +1,4 @@
-<h1> gamedog-flask-sqlalchemy-dbpj </h1>
+<h1> Gamedog Website </h1>
 
 <img src="/pics/db1.png" width = "150" />
 
